@@ -1,0 +1,23 @@
+{
+  "name": "progetto_sw",
+  "version": "1.0.0",
+  "description": "progetto per il corso ingegneria del sw 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FedericoPalaz/SE2_16_173731_173509_P.git"
+  },
+  "author": "Federico Palazzini & Zihadul Azam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FedericoPalaz/SE2_16_173731_173509_P/issues"
+  },
+  "homepage": "https://github.com/FedericoPalaz/SE2_16_173731_173509_P#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.12"
+  }
+}
