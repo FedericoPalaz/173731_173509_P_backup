@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/FedericoPalaz/SE2_16_173731_173509_P#readme",
   "dependencies": {
+    "bind": "^0.1.7",
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongodb": "^2.2.12"
   }

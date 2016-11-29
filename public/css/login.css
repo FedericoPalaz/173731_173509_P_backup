@@ -1,0 +1,17 @@
+/* line 1, ../sass/login.scss */
+body {
+  background-color: #e0f2f1;
+}
+/* line 3, ../sass/login.scss */
+body #login-box {
+  position: fixed;
+  /* or absolute */
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 200px;
+  margin-top: -100px;
+  /*set to a negative number 1/2 of your height*/
+  margin-left: -300px;
+  /*set to a negative number 1/2 of your width*/
+}
