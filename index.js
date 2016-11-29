@@ -18,9 +18,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set('port', (process.env.PORT || 5000));
 
 //mount middlewear (allow to show static files)
-app.use('/pubblic',express.static(__dirname+'/pubblic'));
+app.use('/public',express.static(__dirname+'/public'));
 
-
+app.get('/',function (req,res) {
+    
+        res.redirect('public/tpl/login.html');
+});
 
 //app start listening
 app.listen(app.get('port'), function() {
