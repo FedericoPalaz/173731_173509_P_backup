@@ -14,8 +14,14 @@
 
 <body>
 	<h1>Benvenuto</h1>
-	<Button>Ordinazione Pasti</Button>
+	<div class="input-field center-align">
+        	<a type="submit" class="waves-effect waves-light btn" onclick="btn_ordina();">Ordinazione pasti</a>
+        </div>
 	<br\>
-	<Button>Valutazione Pasti</Button>
+	<div class="input-field center-align">
+        	<a type="submit" class="waves-effect waves-light btn" onclick="btn_valuta();">Valutazione pasti</a>
+        </div>	
+	
+	<script type="text/javascript" src="../public/js/materialize.min.js"></script>
 </body>
 </html>
