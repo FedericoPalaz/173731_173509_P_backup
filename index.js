@@ -25,7 +25,10 @@ const connectionString = process.env.DATABASE_URL;
 const client = new pg.Client(connectionString);
 client.connect();
 
-
+/**
+ * @brief Quando viene richiesta /db.
+ * @return la query.
+ */
 app.get('/db',function(req,res){
      var query = client.query('SELECT * FROM prova');
     query.on('row', function(row) {
@@ -43,6 +46,10 @@ app.set('port', (process.env.PORT || 5000));
 //mount middlewear (allow to show static files)
 app.use('/public',express.static(__dirname+'/public'));
 
+/**
+ * @brief Appena apri l'applicazione
+ * @return la pagina di login.
+ */
 app.get('/',function (req,res) {
     
         res.redirect('public/tpl/login.html');
