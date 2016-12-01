@@ -7,9 +7,16 @@ var app=express();
 //for templates
 var bind = require('bind');
 
-//for URL
-//var url = require('url');
+//manages sessions
+var session = require('express-session')
 
+//use sessions
+app.use(session({ 
+	//required, used to prevent tampering
+	secret: 'string for the hash', 
+	//set time of validity of cookies
+	cookie: { maxAge: 60000 }
+}));
 
 //pg
 const pg = require('pg');
@@ -39,6 +46,28 @@ app.use('/public',express.static(__dirname+'/public'));
 app.get('/',function (req,res) {
     
         res.redirect('public/tpl/login.html');
+});
+
+/**
+ * @brief log out page
+ * @return a page with notification that user is logged out, or a page which says that the user is already logged out.
+ */
+app.get('/logout', function(request, response) 
+{
+	var text = "";
+	
+	//check if the session exists
+	if (request.session.user_id !=null) 
+	{    	
+		request.session.user_id = null;
+  	}
+	else
+	{
+		text = 'You are already logged out';
+	}
+	
+	//write response
+    res.redirect('public/tpl/login.html');
 });
 
 //app start listening
