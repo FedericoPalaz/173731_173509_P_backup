@@ -13,10 +13,19 @@ var bind = require('bind');
 
 //pg
 var pg = require('pg');
-const connectionString = process.env.DATABASE_URL ;
 
-const client = new pg.Client(connectionString);
 
+pg.defaults.ssl = true;
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  client
+    .query('SELECT * FROM prova;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
+});
 
 //connessione al database
 app.get('/db', function (request, response) {
