@@ -17,11 +17,13 @@ const connectionString = process.env.DATABASE_URL;
 
 const client = new pg.Client(connectionString);
 client.connect();
-const query = client.query(
-  'CREATE TABLE prova2(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
-query.on('end', () => { client.end(); });
 
 
+app.get('/db',function(req,res){
+    client.query("SELECT * FROM prova", function(err, result) {
+        res.send(result.rows.lenght);
+    });
+});
 
 //for POST
 var bodyParser = require('body-parser');
