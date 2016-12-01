@@ -7,9 +7,16 @@ var app=express();
 //for templates
 var bind = require('bind');
 
-//for URL
-//var url = require('url');
+//manages sessions
+var session = require('express-session')
 
+//use sessions
+app.use(session({ 
+	//required, used to prevent tampering
+	secret: 'string for the hash', 
+	//set time of validity of cookies
+	cookie: { maxAge: 60000 }
+}));
 
 
 //pg
@@ -19,7 +26,10 @@ const connectionString = process.env.DATABASE_URL;
 const client = new pg.Client(connectionString);
 client.connect();
 
-
+/**
+ * @brief Quando viene richiesta /db.
+ * @return la query.
+ */
 app.get('/db',function(req,res){
      var query = client.query('SELECT * FROM prova');
     query.on('row', function(row) {
@@ -37,9 +47,35 @@ app.set('port', (process.env.PORT || 5000));
 //mount middlewear (allow to show static files)
 app.use('/public',express.static(__dirname+'/public'));
 
+/**
+ * @brief Appena apri l'applicazione
+ * @return la pagina di login.
+ */
 app.get('/',function (req,res) {
     
         res.redirect('public/tpl/login.html');
+});
+
+/**
+ * @brief log out page
+ * @return a page with notification that user is logged out, or a page which says that the user is already logged out.
+ */
+app.get('/logout', function(request, response) 
+{
+	var text = "";
+	
+	//check if the session exists
+	if (request.session.user_id !=null) 
+	{    	
+		request.session.user_id = null;
+  	}
+	else
+	{
+		text = 'You are already logged out';
+	}
+	
+	//write response
+    res.redirect('public/tpl/login.html');
 });
 
 //app start listening
