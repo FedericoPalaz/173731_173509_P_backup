@@ -13,7 +13,7 @@ var bind = require('bind');
 
 //pg
 var pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://dbSW:password@localhost:5432/dbSW';
+const connectionString = process.env.DATABASE_URL ;
 
 const client = new pg.Client(connectionString);
 
