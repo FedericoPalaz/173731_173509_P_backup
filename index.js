@@ -10,6 +10,9 @@ var bind = require('bind');
 //manages sessions
 var session = require('express-session')
 
+//include dataBase Manager
+var dataBase=require('./modules/database.js');
+
 //use sessions
 app.use(session({ 
 	//required, used to prevent tampering
@@ -21,21 +24,7 @@ app.use(session({
 
 //pg
 const pg = require('pg');
-const connectionString = process.env.DATABASE_URL;
-
-const client = new pg.Client(connectionString);
-client.connect();
-
-/**
- * @brief Quando viene richiesta /db.
- * @return la query.
- */
-app.get('/db',function(req,res){
-     var query = client.query('SELECT * FROM prova');
-    query.on('row', function(row) {
-      res.send('Cognome: '+ row.cognome + ' | id: '+ row.id);
-    });
-});
+const connectionString = process.env.DATABASE_URL || 'postgres://dbSW:password@localhost:5432/dbSW';
 
 //for POST
 var bodyParser = require('body-parser');
@@ -55,6 +44,29 @@ app.get('/',function (req,res) {
     
         res.redirect('public/tpl/login.html');
 });
+
+app.get('/prova',function (req,res) {
+    pg.connect(connectionString, function (err, client, done) {
+      if (err) {
+        console.log("Errore Connessione DB");
+      }
+      client.query('SELECT cf FROM users where email=$1;',['mario.rossi@gmail.it'], function (err, result) {
+        if (err) {
+          console.log("isExistsUser Select Error: "+err.message);
+        }
+        else{
+          if(result.rowCount>0){
+            res.send("Esiste");
+          }
+          else
+            res.send("NON Esiste");
+        }
+        done();
+      });
+    });
+});
+
+
 
 /**
  * @brief log out page
