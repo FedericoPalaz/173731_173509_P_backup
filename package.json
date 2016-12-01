@@ -20,6 +20,7 @@
     "bind": "^0.1.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "mongodb": "^2.2.12",
     "pg": "^6.1.0"
   }
