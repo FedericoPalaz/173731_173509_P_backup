@@ -20,8 +20,9 @@ client.connect();
 
 
 app.get('/db',function(req,res){
-    client.query("SELECT * FROM prova", function(err, result) {
-        res.send("ciao");
+     var query = client.query('SELECT * FROM prova');
+    query.on('row', function(row) {
+      res.send('user "%s" is %d years old', row.cognome, row.id);
     });
 });
 
