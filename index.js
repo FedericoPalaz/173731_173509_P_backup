@@ -21,7 +21,7 @@ client.connect();
 
 app.get('/db',function(req,res){
     client.query("SELECT * FROM prova", function(err, result) {
-        res.send(result.rows.lenght);
+        res.send("ciao");
     });
 });
 
