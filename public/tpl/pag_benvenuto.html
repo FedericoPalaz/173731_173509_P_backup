@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pagina di benvenuto</title>
+	<!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+    <!--Import benvenuto.css-->
+    <link type="text/css" rel="stylesheet" href="../css/benvenuto.css"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta charset="utf-8"/>
+</head>
+
+<body>
+    
+    <!--navbar-->
+    <nav>
+    <div class="nav-wrapper">
+      <a class=" brand-logo"><i><b>ASPS</b></i></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><a class="waves-effect waves-light btn">Logout</a></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="waves-effect waves-light btn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+	<div>
+        <h1 class="center-align">Benvenuto</h1>
+        <h5 class="center-align">Scegli cosa vuoi fare...</h5>
+    </div>
+	<div class="center-align card-panel  " id="box">
+        <div class="input-field center-align">
+                <a class="waves-effect waves-light btn-large " onclick="btn_ordina()">Ordina pasti<i class="material-icons right">view_list</i></a>
+            </div>
+
+        <div class="input-field center-align">
+                <a  class="waves-effect waves-light btn-large " onclick="btn_valuta()">Valuta pasti<i class="material-icons right">thumbs_up_down</i></a>
+            </div>	
+	</div>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+</body>
+</html>

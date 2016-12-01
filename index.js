@@ -12,7 +12,20 @@ var bind = require('bind');
 
 
 
+//pg
+const pg = require('pg');
+const connectionString = process.env.DATABASE_URL;
 
+const client = new pg.Client(connectionString);
+client.connect();
+
+
+app.get('/db',function(req,res){
+     var query = client.query('SELECT * FROM prova');
+    query.on('row', function(row) {
+      res.send('Cognome: '+ row.cognome + ' | id: '+ row.id);
+    });
+});
 
 //for POST
 var bodyParser = require('body-parser');
