@@ -50,7 +50,7 @@ app.use('/public',express.static(__dirname+'/public'));
  * @brief Appena apri l'applicazione
  * @return la pagina di login.
  */
-app.post('/',function (req,res) {
+app.get('/',function (req,res) {
     
         res.redirect('public/tpl/login.html');
 });
